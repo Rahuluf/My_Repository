@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    #foodImage {
+      display: none;
+      margin-top: 20px;
+    }
+
+    #orderId {
+      font-size: 20px;
+      font-weight: bold;
+      display: none;
+    }
+  </style>
+  <title> Restaurant</title>
+</head>
+<body>
+  <button onclick="orderFood()">Order Food</button>
+
+  <div>
+    <input type="checkbox" id="burger" name="food" value="Burger">
+    <label for="burger">Burger</label>
+
+    <input type="checkbox" id="pizza" name="food" value="Pizza">
+    <label for="pizza">Pizza</label>
+
+    <input type="checkbox" id="pasta" name="food" value="Pasta">
+    <label for="pasta">Pasta</label>
+  </div>
+
+  <img id="foodImage" src="" alt="Food Image">
+  <div id="orderId"></div>
+
+
+
+
+  <script>
+    function orderFood() {
+      const selectedFoodItems = document.querySelectorAll('input[name="food"]:checked');
+      if (selectedFoodItems.length === 0) {
+        alert('Please select at least one food item!');
+        return;
+      }
+
+      const orderId = generateOrderId();
+      const promise = new Promise((resolve) => {
+        const randomSeconds = Math.floor(Math.random() * 5000) + 2000; 
+        setTimeout(() => {
+          resolve(orderId);
+        }, randomSeconds);
+      });
+
+      promise.then((orderId) => {
+        showFoodImage();
+        showOrderId(orderId);
+      });
+    }
+
+    function generateOrderId() {
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+      let orderId = '';
+      for (let i = 0; i < 6; i++) {
+        orderId += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      return orderId;
+    }
+
+    function showFoodImage() {
+      const foodImage = document.getElementById('foodImage');
+      foodImage.src = getSelectedFoodImageUrl();
+      foodImage.style.display = 'block';
+    }
+
+    function showOrderId(orderId) {
+      const orderIdElement = document.getElementById('orderId');
+      orderIdElement.textContent = `Order ID: ${orderId}`;
+      orderIdElement.style.display = 'block';
+    }
+
+    function getSelectedFoodImageUrl() {
+      const selectedFoodItems = document.querySelectorAll('input[name="food"]:checked');
+      const foodOptions = {
+        Burger: 'https://tse3.mm.bing.net/th?id=OIP.TyFXb0SqI3Im2zsEOAcqEwHaLH&pid=Api&P=0&h=180',
+        Pizza: 'https://tse2.mm.bing.net/th?id=OIP.zq-3BhvlBu1kmoUqwC4u2gHaJ4&pid=Api&P=0&h=180',
+        Pasta: 'https://tse1.mm.bing.net/th?id=OIP.Em2LcIhd2e71mAjMh2xblwHaE7&pid=Api&P=0&h=180',
+      };
+
+      for (const item of selectedFoodItems) {
+        const foodName = item.value;
+        return foodOptions[foodName];
+      }
+
+      return ''; 
+    }
+  </script>
+</body>
+</html>
