@@ -1,0 +1,76 @@
+QUES - 1 Write Mongo query to retrieve the documents from the orders where the customer_id is 1.
+ANS - 1 db.orders.find({ "customer_id": 1 })
+
+QUES - 2 Write Mongo query to retrieve documents from the products where supplier_id is 3 .
+ANS - 2 db.products.find({ "supplier_id": 3 })
+
+QUES - 3 Write Mongo query to retrieve the documents from the orders collection with "status": "shipped" .
+ANS - 3 db.orders.find({ "status": "shipped" })
+
+QUES - 4 Write Mongo query to retrieve the amount and paymentMethod from payments where the paymentMethod is not UPI.
+ANS - 4 db.payments.find({ "paymentMethod": { $ne: "UPI" } }, { "amount": 1, "paymentMethod": 1, "_id": 0 })
+
+QUES - 5 Write Mongo query to retrieve the paymentstatus where the amount is greater than 100.
+ANS - 5 db.payments.find({ "amount": { $gt: 100 } }, { "paymentstatus": 1, "_id": 0 })
+
+QUES - 6 Write Mongo query to retrieve the shipper_id and price from the order_details where the price is greater than 2000.
+ANS - 6 db.order_details.find({ "price": { $gt: 2000 } }, { "shipper_id": 1, "price": 1, "_id": 0 })
+
+QUES - 7 Write Mongo query to retrieve the customer_id and _id from the orders where the status is not shipped.
+ANS - 7 db.orders.find({ "status": { $ne: "shipped" } }, { "customer_id": 1 })
+
+QUES - 8 Write Mongo query to retrieve documents from the products where category_id is 1 with out product _id.
+ANS - 8 db.products.find({ "category_id": 1 }, { "_id": 0 })
+
+QUES - 9 Write Mongo query to retrieve name,quantity from the products where price greater than 1500 .
+ANS - 9 db.products.find({ "price": { $gt: 1500 } }, { "name": 1, "quantity": 1, "_id": 0 })
+
+QUES - 10 Write Mongo query to retrieve the name from the shippers where the phone number is 1-800-742-5877.
+ANS - 10 db.shippers.find({ "phone": "1-800-742-5877" }, { "name": 1, "_id": 0 })
+
+QUES - 11 Write Mongo query to retrieve the city and phone of the suppliers where the suppliers name is Sony.
+ANS - 11 db.suppliers.find({ "name": "Sony" }, { "city": 1, "phone": 1, "_id": 0 })
+
+QUES - 12 Write Mongo query to retrieve the name of the suppliers where the city is Tokyo.
+ANS - 12 db.suppliers.find({ "city": "Tokyo" }, { "name": 1, "_id": 0 })
+
+QUES 13 Write Mongo query to find amount of payment made through "UPI" ?
+ANS 13 db.payments.aggregate([
+  { $match: { "paymentMethod": "UPI" } },
+  { $group: { _id: null, totalAmount: { $sum: "$amount" } } }
+])
+
+QUES - 14 Write Mongo query to find buyers city as key name "city" who uses hotmail ?
+ANS - 14 db.buyers.aggregate([
+  { $match: { "email": /hotmail\.com$/ } },
+  { $project: { "city": "$address.city", "_id": 0 } }
+])
+
+QUES - 15 Use MongoDB aggregation to retrieve the top 5 most recent orders that have been shipped, projecting the order date, status, and total amount.
+ANS - 15 db.orders.aggregate([
+  { $match: { "status": "shipped" } },
+  { $sort: { "order_date": -1 } },
+  { $limit: 5 },
+  { $project: { "order_date": 1, "status": 1, "total": 1, "_id": 0 } }
+])
+
+QUES - 16 Aggregate the first 3 payments with a "success" status, projecting the payment date, amount, and method.
+ANS- 16 db.payments.aggregate([
+  { $match: { "paymentstatus": "success" } },
+  { $limit: 3 },
+  { $project: { "payment_date": 1, "amount": 1, "paymentMethod": 1, "_id": 0 } }
+])
+
+QUES - 17 Aggregate all pending orders, sort them by the order date in descending order, and project the customer ID, order date, and total amount.
+ANS - 17 db.orders.aggregate([
+  { $match: { "status": "pending" } },
+  { $sort: { "order_date": -1 } },
+  { $project: { "customer_id": 1, "order_date": 1, "total": 1, "_id": 0 } }
+])
+
+QUES - 18 Aggregate products, sort them by quantity in descending order, limit the result to the top 10 items, and project the product name and quantity.
+ANS - 18 db.products.aggregate([
+  { $sort: { "quantity": -1 } },
+  { $limit: 10 },
+  { $project: { "name": 1, "quantity": 1, "_id": 0 } }
+])

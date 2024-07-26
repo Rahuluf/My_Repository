@@ -1,0 +1,35 @@
+QUES - 1 Write Mongo query to retrieve documents from the products where supplier_id is 3?
+ANS - 1 db.products.find({ "supplier_id": 3 })
+
+QUES - 2 Write Mongo query to retrieve the documents from the orders collection with "status": "shipped" .
+ANS - 2 db.orders.find({ "status": "shipped" })
+
+QUES - 3 Write Mongo query to find buyers who from state CA ?
+ANS - 3 db.buyers.find({ "address.state": "CA" })
+
+QUES - 4 Write Mongo query to retrieve the amount,paymentstatus and paymentMethod from payments
+ANS - 4 db.payments.find({}, { "amount": 1, "paymentstatus": 1, "paymentMethod": 1, "_id": 0 })
+
+QUES - 5 Write Mongo query to retrieve documents from the orders with out _id.
+ANS - 5 db.orders.find({}, { "_id": 0 })
+
+QUES - 6 Write Mongo query to retrieve name,price from the products 
+ANS - 6 db.products.find({}, { "name": 1, "price": 1, "_id": 0 })
+
+QUES - 7 Write Mongo query to find buyers city and zip code ?
+ANS - 7 db.buyers.find({}, { "address.city": 1, "address.zip": 1, "_id": 0 })
+
+QUES - 8 Write Mongo query to find buyers name,email, city and zip code ?
+ANS- 8 db.buyers.find({}, { "name": 1, "email": 1, "address.city": 1, "address.zip": 1, "_id": 0 })
+
+QUES - 9 Write Mongo query to find suppliers name and phone ?
+ANS - 9 db.suppliers.find({}, { "name": 1, "phone": 1, "_id": 0 })
+
+QUES - 10 Write Mongo query to find buyers name,email, city and zip code ?
+ANS - 10 db.buyers.find({}, { "name": 1, "email": 1, "address.city": 1, "address.zip": 1, "_id": 0 })
+
+QUES - 11 Write Mongo query to find buyers city and zip code ?
+ANS - 11 db.buyers.find({}, { "address.city": 1, "address.zip": 1, "_id": 0 })
+
+QUES - 12 Write Mongo query to retrieve name,price from the products .
+ANS - 12 db.products.find({}, { "name": 1, "price": 1, "_id": 0 })
