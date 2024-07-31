@@ -1,81 +1,117 @@
-/* body {
+/* Basic styling */
+body {
     font-family: Arial, sans-serif;
-    line-height: 1.6;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+    color: #333;
+    transition: background-color 0.5s, color 0.5s;
 }
 
-header, nav, section, footer {
-    padding: 20px;
+.section {
+    padding: 40px;
 }
 
-header {
-    background-color: #333;
+h1, h2, h3 {
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form button {
+    padding: 10px 20px;
+    background: #333;
     color: #fff;
-    text-align: center;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-nav ul {
-    list-style-type: none;
-    padding: 0;
+form button:hover {
+    background: #555;
 }
 
-nav ul li {
-    display: inline;
-    margin-right: 10px;
+/* Portfolio Style for Home Section */
+#home .col-md-6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-section {
-    margin: 20px;
+#home img {
+    border-radius: 50%;
+    width: 300px; /* Increase the width */
+    height: 300px; /* Increase the height */
+    object-fit: cover; /* Ensures the image covers the container without stretching */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
 }
 
-.project {
-    border: 1px solid #ccc;
+#home .display-4 {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+#home .lead {
+    font-size: 1.25rem;
+}
+
+/* Dark mode styling */
+.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+.dark-mode a {
+    color: #f0f0f0;
+}
+
+/* Button styling */
+.theme-color-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.theme-color-buttons button {
     margin-bottom: 10px;
+    font-size: 16px;
     padding: 10px;
 }
 
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
+.color-options {
+    display: none;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.color-options button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    margin: 5px;
+    cursor: pointer;
+    transition: transform 0.3s;
 }
 
-
-section {
-    opacity: 0;
-    animation: fadeIn 1s ease-in forwards;
-    animation-delay: 0.5s; 
+.color-options button:hover {
+    transform: scale(1.2);
 }
-
-
-section:nth-child(1) {
-    animation-delay: 0.5s;
-}
-section:nth-child(2) {
-    animation-delay: 1s;
-}
-section:nth-child(3) {
-    animation-delay: 1.5s;
-}
-section:nth-child(4) {
-    animation-delay: 2s;
-} */
-
-
-
-
-
-
-/*  New Start */
