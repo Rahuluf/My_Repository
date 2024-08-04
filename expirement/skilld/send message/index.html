@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("VgfMIm_BIwtdW_2ab"); // Replace with your actual User ID
+    })();
+  </script>
+  
+</head>
+<body>
+  <div class="contact-form padd-15">
+    <form id="contactForm">
+      <div class="row">
+        <div class="form-item col-6 padd-15">
+          <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="Name" required>
+          </div>
+        </div>
+        <div class="form-item col-6 padd-15">
+          <div class="form-group">
+            <input type="email" class="form-control" name="email" placeholder="Enter Your Email" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-item col-12 padd-15">
+          <div class="form-group">
+            <textarea name="message" class="form-control" placeholder="Message" required></textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-item col-12 padd-15">
+          <div class="form-group">
+            <button class="btn btn-danger" type="submit" style="border-radius: 40px;">Send message</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      emailjs.sendForm('service_35msypm', '__ejs-test-mail-service__', this)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          alert('Email sent successfully!');
+        }, function(error) {
+          console.log('FAILED...', error);
+          alert('Failed to send email.');
+        });
+    });
+  </script>
+</body>
+</html>
+
+
