@@ -22,8 +22,8 @@
 
 // console.log(a3)
 
-import {rahul} from './module.mjs';
-rahul()
+// import {rahul} from './module.mjs';
+// rahul()
 
 
 
